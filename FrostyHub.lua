@@ -20,10 +20,10 @@ ScreenGui.Name = "FrostyHub"
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = guiParent
 
--- Frame principal
+-- Frame principal (aumentado)
 local Frame = Instance.new("Frame")
 Frame.Name = "MainFrame"
-Frame.Size = UDim2.new(0, 220, 0, 260)
+Frame.Size = UDim2.new(0, 220, 0, 300) -- aumento de altura
 Frame.Position = UDim2.new(0.1, 0, 0.2, 0)
 Frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
 Frame.BorderSizePixel = 0
@@ -33,6 +33,18 @@ Frame.Parent = ScreenGui
 
 local FrameCorner = Instance.new("UICorner", Frame)
 FrameCorner.CornerRadius = UDim.new(0, 15)
+
+-- Title
+local Title = Instance.new("TextLabel", Frame)
+Title.Name = "Title"
+Title.Size = UDim2.new(1, 0, 0, 30)
+Title.Position = UDim2.new(0, 0, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Text = "🧊 | FrostyHub"
+Title.TextColor3 = Color3.fromRGB(0,170,255)
+Title.Font = Enum.Font.SourceSansBold
+Title.TextScaled = true
+Title.TextStrokeTransparency = 0.7
 
 -- Função criar botão arredondado
 local function criarBotao(nome, y)
@@ -53,11 +65,11 @@ end
 -- Botões
 local btnSpeed = criarBotao("Velocidade", 40)
 
--- Botão Tp Base (igual visualmente aos outros)
+-- Botão Tp Base (fixo, sem ON/OFF)
 local btnTpBase = Instance.new("TextButton", Frame)
 btnTpBase.Size = UDim2.new(0,200,0,50)
 btnTpBase.Position = UDim2.new(0,10,0,100)
-btnTpBase.Text = "Tp Base OFF"
+btnTpBase.Text = "Tp Base" -- fixo
 btnTpBase.BackgroundColor3 = Color3.fromRGB(0,200,0)
 btnTpBase.BorderSizePixel = 0
 btnTpBase.TextColor3 = Color3.fromRGB(255,255,255)
@@ -170,13 +182,10 @@ spawn(function()
                 if prompt:IsA("ProximityPrompt") and secretPetNames[prompt.ObjectText] then
                     local char = player.Character
                     if char and char:FindFirstChild("HumanoidRootPart") then
-                        -- Teleporta para o objeto/part que contém o ProximityPrompt
                         char.HumanoidRootPart.CFrame = prompt.Parent.CFrame
                         task.wait(0.2)
-                        -- Usa o ProximityPrompt sozinho
                         fireproximityprompt(prompt)
                         task.wait(0.2)
-                        -- Volta para Tp Base
                         char.HumanoidRootPart.CFrame = tpBaseCFrame
                     end
                 end
