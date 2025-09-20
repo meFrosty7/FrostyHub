@@ -20,10 +20,10 @@ ScreenGui.Name = "FrostyHub"
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = guiParent
 
--- Frame principal (aumentado)
+-- Frame principal (altura aumentada)
 local Frame = Instance.new("Frame")
 Frame.Name = "MainFrame"
-Frame.Size = UDim2.new(0, 220, 0, 300) -- aumento de altura
+Frame.Size = UDim2.new(0, 220, 0, 320) -- aumento de altura
 Frame.Position = UDim2.new(0.1, 0, 0.2, 0)
 Frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
 Frame.BorderSizePixel = 0
@@ -46,7 +46,7 @@ Title.Font = Enum.Font.SourceSansBold
 Title.TextScaled = true
 Title.TextStrokeTransparency = 0.7
 
--- Função criar botão arredondado
+-- Função criar botão arredondado (vermelho ON/OFF)
 local function criarBotao(nome, y)
     local btn = Instance.new("TextButton", Frame)
     btn.Size = UDim2.new(0,200,0,50)
@@ -65,14 +65,14 @@ end
 -- Botões
 local btnSpeed = criarBotao("Velocidade", 40)
 
--- Botão Tp Base (fixo, sem ON/OFF)
+-- Botão Tp Base (cinza claro, sem ON/OFF)
 local btnTpBase = Instance.new("TextButton", Frame)
 btnTpBase.Size = UDim2.new(0,200,0,50)
 btnTpBase.Position = UDim2.new(0,10,0,100)
-btnTpBase.Text = "Tp Base" -- fixo
-btnTpBase.BackgroundColor3 = Color3.fromRGB(0,200,0)
+btnTpBase.Text = "Tp Base"
+btnTpBase.BackgroundColor3 = Color3.fromRGB(180,180,180) -- cinza claro
 btnTpBase.BorderSizePixel = 0
-btnTpBase.TextColor3 = Color3.fromRGB(255,255,255)
+btnTpBase.TextColor3 = Color3.fromRGB(0,0,0) -- texto preto
 btnTpBase.Font = Enum.Font.SourceSansBold
 btnTpBase.TextScaled = true
 local tpCorner = Instance.new("UICorner", btnTpBase)
@@ -218,7 +218,7 @@ player.CharacterAdded:Connect(function(char)
     end
 end)
 
--- Minimizar/Restaurar sem ativar ao arrastar
+-- Minimizar/Restaurar
 local btnMin = Instance.new("TextButton", Frame)
 btnMin.Name = "Minimize"
 btnMin.Size = UDim2.new(0, 28, 0, 22)
