@@ -1,4 +1,4 @@
--- FrostyHub (Velocidade + Tp Base + Auto Steal + Auto Secret Pet)
+-- FrostyHub (Velocidade + Tp Base + Auto Steal + Auto Secret Pet + Reset Único)
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
@@ -14,6 +14,14 @@ if not guiParent then guiParent = player:WaitForChild("PlayerGui") end
 local old = guiParent:FindFirstChild("FrostyHub")
 if old then old:Destroy() end
 
+-- Reset Único ao executar
+if not getgenv().FrostyHub_ResetDone then
+    getgenv().FrostyHub_ResetDone = true
+    pcall(function()
+        player:LoadCharacter() -- força reset
+    end)
+end
+
 -- ScreenGui
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "FrostyHub"
@@ -23,7 +31,7 @@ ScreenGui.Parent = guiParent
 -- Frame principal (altura aumentada)
 local Frame = Instance.new("Frame")
 Frame.Name = "MainFrame"
-Frame.Size = UDim2.new(0, 220, 0, 320) -- aumento de altura
+Frame.Size = UDim2.new(0, 220, 0, 320)
 Frame.Position = UDim2.new(0.1, 0, 0.2, 0)
 Frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
 Frame.BorderSizePixel = 0
@@ -65,14 +73,14 @@ end
 -- Botões
 local btnSpeed = criarBotao("Velocidade", 40)
 
--- Botão Tp Base (cinza claro, sem ON/OFF)
+-- Botão Tp Base (cinza escuro)
 local btnTpBase = Instance.new("TextButton", Frame)
 btnTpBase.Size = UDim2.new(0,200,0,50)
 btnTpBase.Position = UDim2.new(0,10,0,100)
 btnTpBase.Text = "Tp Base"
-btnTpBase.BackgroundColor3 = Color3.fromRGB(180,180,180) -- cinza claro
+btnTpBase.BackgroundColor3 = Color3.fromRGB(50,50,50) -- cinza escuro
 btnTpBase.BorderSizePixel = 0
-btnTpBase.TextColor3 = Color3.fromRGB(0,0,0) -- texto preto
+btnTpBase.TextColor3 = Color3.fromRGB(255,255,255) -- texto branco
 btnTpBase.Font = Enum.Font.SourceSansBold
 btnTpBase.TextScaled = true
 local tpCorner = Instance.new("UICorner", btnTpBase)
